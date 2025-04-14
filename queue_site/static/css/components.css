@@ -1,0 +1,206 @@
+/* queue_site/static/css/components.css */
+
+/* Стили для шапки */
+.navbar.fixed-top {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    font-size: 1rem;
+    padding: 0.5rem 1rem !important;
+}
+
+/* Стили для кнопки "Отметить как сданную"/"Отменить сдачу" */
+button.toggle-lab-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px !important;
+    font-size: 0.8rem !important;
+    border-radius: 5px !important;
+    transition: all 0.3s ease !important;
+    white-space: normal;
+    max-width: 120px;
+    text-align: center;
+}
+
+/* Зависимость от темы для кнопки "Отметить как сданную" */
+body.theme-white button.toggle-lab-btn.btn-success {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+
+body.theme-blue button.toggle-lab-btn.btn-success {
+    background-color: #5A9BD5 !important;
+    border-color: #5A9BD5 !important;
+}
+
+body.theme-purple button.toggle-lab-btn.btn-success {
+    background-color: #8B7DDB !important;
+    border-color: #8B7DDB !important;
+}
+
+body.theme-orange button.toggle-lab-btn.btn-success {
+    background-color: #FFB266 !important;
+    border-color: #FFB266 !important;
+}
+
+/* Зависимость от темы для кнопки "Отменить сдачу" */
+body.theme-white button.toggle-lab-btn.btn-outline-danger {
+    border-color: #dc3545 !important;
+    color: #dc3545 !important;
+}
+
+body.theme-blue button.toggle-lab-btn.btn-outline-danger {
+    border-color: #4682B4 !important;
+    color: #4682B4 !important;
+}
+
+body.theme-purple button.toggle-lab-btn.btn-outline-danger {
+    border-color: #6A5ACD !important;
+    color: #6A5ACD !important;
+}
+
+body.theme-orange button.toggle-lab-btn.btn-outline-danger {
+    border-color: #FF944D !important;
+    color: #FF944D !important;
+}
+
+button.toggle-lab-btn.btn-success:hover,
+button.toggle-lab-btn.btn-outline-danger:hover {
+    background-color: inherit !important;
+    color: inherit !important;
+    border-color: inherit !important;
+    box-shadow: none !important;
+    transform: scale(1.05);
+}
+
+/* Стили для индикаторов статуса */
+.text-success {
+    color: #28a745 !important;
+}
+
+.text-muted {
+    font-size: 0.85rem !important;
+}
+
+/* Общие стили для карточек */
+.card.shadow-sm.border-0.h-100 {
+    border-radius: 8px !important;
+    transition: box-shadow 0.3s ease !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+    flex: 1 0 auto;
+    background-color: #FFFFFF;
+}
+
+.card.shadow-sm.border-0.h-100:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+}
+
+.card.mb-2 {
+    border-radius: 6px !important;
+    transition: background-color 0.3s ease !important;
+    background-color: #FFFFFF;
+    padding: 0.5rem;
+}
+
+/* Стили для аккордеона */
+.accordion-button {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    text-align: left !important;
+    padding: 0.5rem 2.5rem 0.5rem 1rem !important; /* Добавляем место для стрелки справа */
+    position: relative !important; /* Для позиционирования стрелки */
+    display: block !important; /* Bootstrap ожидает block */
+    border: 1px solid #dee2e6 !important;
+    border-radius: 5px !important;
+    background-color: #f8f9fa !important;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* Восстанавливаем стрелку */
+.accordion-button::after {
+    content: '' !important;
+    position: absolute !important;
+    right: 1rem !important;
+    top: 50% !important;
+    width: 1rem !important;
+    height: 1rem !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") !important;
+    background-size: 1rem !important;
+    transform: translateY(-50%) !important;
+    transition: transform 0.2s ease-in-out !important;
+}
+
+/* Поворот стрелки при открытии */
+.accordion-button:not(.collapsed)::after {
+    transform: translateY(-50%) rotate(-180deg) !important;
+}
+
+/* Стили для кнопок */
+.btn-sm {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.875rem !important;
+}
+
+
+/* Стили для hover-эффекта аккордеона */
+body.theme-white .accordion-button:hover {
+    background-color: #e7f1ff !important;
+    color: #0d6efd !important;
+}
+
+body.theme-blue .accordion-button:hover {
+    background-color: #d0e4ff !important;
+    color: #4682B4 !important;
+}
+
+body.theme-purple .accordion-button:hover {
+    background-color: #f0eaff !important;
+    color: #6A5ACD !important;
+}
+
+body.theme-orange .accordion-button:hover {
+    background-color: #fff7e6 !important;
+    color: #FF944D !important;
+}
+
+/* Общие стили для кнопок .btn-primary и .btn-outline-primary */
+.btn-primary,
+.btn-outline-primary {
+    transition: all 0.3s ease !important;
+}
+
+.btn-primary:hover,
+.btn-outline-primary:hover {
+    transform: scale(1.05);
+}
+
+
+/* Уменьшаем высоту карточек */
+.accordion-body .card {
+    margin-bottom: 0.1rem !important; /* Ещё меньше внешний отступ */
+}
+
+.accordion-body .card-body {
+    padding: 0.3rem 0.5rem !important; /* Ещё меньше внутренние отступы */
+    font-size: 0.85rem !important; /* Уменьшаем шрифт текста */
+    line-height: 1.2 !important; /* Уменьшаем высоту строки */
+}
+
+.accordion-body .btn-sm {
+    padding: 0.15rem 0.3rem !important; /* Ещё меньше отступы кнопки */
+    font-size: 0.75rem !important; /* Ещё меньше шрифт кнопки */
+    line-height: 1.2 !important; /* Уменьшаем высоту строки кнопки */
+}
+
+/* Уменьшаем размер иконок */
+.accordion-body .card-body i {
+    font-size: 0.8rem !important; /* Уменьшаем размер иконок */
+    vertical-align: middle !important; /* Выравниваем по центру */
+}

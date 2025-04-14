@@ -1,0 +1,21 @@
+/* queue_site/static/css/base.css */
+
+/* Базовые стили для страницы */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #1A2526;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.content {
+    flex: 1 0 auto;
+    padding-top: 56px; /* Только отступ под шапку */
+}

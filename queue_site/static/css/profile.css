@@ -1,0 +1,107 @@
+/* queue_site/static/css/profile.css */
+
+/* Стили для страницы /profile/ */
+.container.flex-grow-1 {
+    min-height: calc(100vh - 56px);
+    padding-top: 56px;
+}
+
+.row.h-100 {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    height: 100%;
+}
+
+.col-md-3.h-100 {
+    flex: 0 0 25% !important;
+    max-width: 25% !important;
+    height: 100%;
+}
+
+.col-md-9.h-100 {
+    flex: 0 0 75% !important;
+    max-width: 75% !important;
+    height: 100%;
+}
+
+/* Аватарка */
+#avatar-preview {
+    transition: opacity 0.3s ease;
+    width: 150px !important;
+    height: 150px !important;
+    object-fit: cover !important;
+}
+
+/* Hover для аватарки */
+#avatar-preview:hover {
+    opacity: 0.9 !important;
+}
+
+/* Стили для кнопки настроек */
+.settings-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Фиксированная кнопка настроек */
+.fixed-settings-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10; /* Чтобы кнопка была поверх карточки */
+}
+
+/* Зависимость от темы */
+body.theme-white .settings-btn {
+    background-color: #e7f1ff;
+    color: #007BFF;
+}
+
+body.theme-white .settings-btn:hover {
+    background-color: #d0e4ff;
+    color: #0056b3;
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+body.theme-blue .settings-btn {
+    background-color: #e7f1ff;
+    color: #5A9BD5;
+}
+
+body.theme-blue .settings-btn:hover {
+    background-color: #d0e4ff;
+    color: #4682B4;
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+body.theme-purple .settings-btn {
+    background-color: #f0eaff;
+    color: #8B7DDB;
+}
+
+body.theme-purple .settings-btn:hover {
+    background-color: #e6dfff;
+    color: #6A5ACD;
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+body.theme-orange .settings-btn {
+    background-color: #fff7e6;
+    color: #FFB266;
+}
+
+body.theme-orange .settings-btn:hover {
+    background-color: #fff0d9;
+    color: #FF944D;
+    transform: scale(1.1);
+    box-shadow:

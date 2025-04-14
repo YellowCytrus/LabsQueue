@@ -1,0 +1,135 @@
+/* queue_site/static/css/themes.css */
+
+/* Темы */
+body.theme-white {
+    background-color: #FFFFFF;
+}
+
+body.theme-blue {
+    background-color: #E6F0FA;
+}
+
+body.theme-purple {
+    background-color: #F8F2FF; /* Более мягкий фиолетовый фон */
+}
+
+body.theme-orange {
+    background-color: #FFF9F0; /* Ещё более мягкий оранжевый фон */
+}
+
+/* Акценты для тем */
+body.theme-white .navbar-light,
+body.theme-blue .navbar-light,
+body.theme-purple .navbar-light,
+body.theme-orange .navbar-light {
+    background-color: #FFFFFF !important;
+}
+
+body.theme-white a:not(.btn),
+body.theme-white .btn-outline-primary {
+    color: #007BFF !important;
+    border-color: #007BFF !important;
+    transition: all 0.3s ease !important;
+}
+
+body.theme-white a:not(.btn):hover,
+body.theme-white .btn-outline-primary:hover {
+    color: #FFFFFF !important;
+    background-color: #007BFF !important;
+    border-color: #007BFF !important;
+}
+
+body.theme-blue a:not(.btn),
+body.theme-blue .btn-outline-primary {
+    color: #5A9BD5 !important;
+    border-color: #5A9BD5 !important;
+    transition: all 0.3s ease !important;
+}
+
+body.theme-blue a:not(.btn):hover,
+body.theme-blue .btn-outline-primary:hover {
+    color: #FFFFFF !important;
+    background-color: #5A9BD5 !important;
+    border-color: #5A9BD5 !important;
+}
+
+body.theme-purple a:not(.btn),
+body.theme-purple .btn-outline-primary {
+    color: #8B7DDB !important;
+    border-color: #8B7DDB !important;
+    transition: all 0.3s ease !important;
+}
+
+body.theme-purple a:not(.btn):hover,
+body.theme-purple .btn-outline-primary:hover {
+    color: #FFFFFF !important;
+    background-color: #8B7DDB !important;
+    border-color: #8B7DDB !important;
+}
+
+body.theme-orange a:not(.btn),
+body.theme-orange .btn-outline-primary {
+    color: #FFB266 !important;
+    border-color: #FFB266 !important;
+    transition: all 0.3s ease !important;
+}
+
+body.theme-orange a:not(.btn):hover,
+body.theme-orange .btn-outline-primary:hover {
+    color: #FFFFFF !important;
+    background-color: #FFB266 !important;
+    border-color: #FFB266 !important;
+}
+
+/* Кнопки */
+body.theme-white .btn-primary {
+    background-color: #007BFF;
+    border-color: #007BFF;
+    color: #FFFFFF;
+    transition: all 0.3s ease !important;
+}
+
+body.theme-white .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    color: #FFFFFF !important;
+}
+
+body.theme-blue .btn-primary {
+    background-color: #5A9BD5;
+    border-color: #5A9BD5;
+    color: #FFFFFF;
+    transition: all 0.3s ease !important;
+}
+
+body.theme-blue .btn-primary:hover {
+    background-color: #4682B4;
+    border-color: #4682B4;
+    color: #FFFFFF !important;
+}
+
+body.theme-purple .btn-primary {
+    background-color: #8B7DDB;
+    border-color: #8B7DDB;
+    color: #FFFFFF;
+    transition: all 0.3s ease !important;
+}
+
+body.theme-purple .btn-primary:hover {
+    background-color: #6A5ACD;
+    border-color: #6A5ACD;
+    color: #FFFFFF !important;
+}
+
+body.theme-orange .btn-primary {
+    background-color: #FFB266;
+    border-color: #FFB266;
+    color: #FFFFFF;
+    transition: all 0.3s ease !important;
+}
+
+body.theme-orange .btn-primary:hover {
+    background-color: #FF944D;
+    border-color: #FF944D;
+    color: #FFFFFF !important;
+}

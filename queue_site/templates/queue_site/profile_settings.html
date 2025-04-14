@@ -1,0 +1,80 @@
+{% extends 'queue_site/base.html' %}
+{% load static %}
+
+{% block title %}Настройки профиля - Электронная очередь{% endblock %}
+
+{% block content %}
+    <div class="container flex-grow-1 pt-5">
+        <div class="row h-100">
+            <!-- Боковая панель -->
+            <div class="col-md-3 h-100">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body text-center p-4 d-flex flex-column">
+                        <!-- Аватарка -->
+                        <div class="position-relative">
+                            <img src="{{ user.get_avatar_url }}" alt="Аватар" class="rounded-circle mb-3 mx-auto" style="width: 150px; height: 150px; object-fit: cover;" onerror="this.src='/media/avatars/defaults/avatar1.jpg';">
+                        </div>
+                        <!-- Ник -->
+                        <h5 class="mb-1">{{ user.username }}</h5>
+                        <!-- Telegram username -->
+                        <p class="text-muted mb-4">{{ user.telegram_username }}</p>
+
+                        <!-- Навигация -->
+                        <div class="mt-auto">
+                            <a href="{% url 'profile' %}" class="btn btn-outline-primary mb-2 w-100">Вернуться в профиль</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Основная часть -->
+            <div class="col-md-9 h-100">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body p-4">
+                        <h3>Настройки профиля</h3>
+                        <form method="post" action="{% url 'profile_settings' %}" id="settings-form">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="telegram_username" class="form-label">Telegram Username</label>
+                                <input type="text" class="form-control" id="telegram_username" name="telegram_username" value="{{ user.telegram_username }}" placeholder="@username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="theme" class="form-label">Тема сайта</label>
+                                <select class="form-select" id="theme" name="theme">
+                                    <option value="white" {% if user.theme == 'white' %}selected{% endif %}>Белая</option>
+                                    <option value="blue" {% if user.theme == 'blue' %}selected{% endif %}>Синяя</option>
+                                    <option value="purple" {% if user.theme == 'purple' %}selected{% endif %}>Фиолетовая</option>
+                                    <option value="orange" {% if user.theme == 'orange' %}selected{% endif %}>Оранжевая</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для подтверждения изменений -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmModalLabel">Сохранить изменения?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Вы изменили настройки, но не сохранили изменения. Хотите сохранить их перед выходом?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="discard-changes-btn" data-bs-dismiss="modal">Отменить изменения</button>
+                    <button type="button" class="btn btn-primary" id="save-changes-btn">Сохранить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/profile_settings.js' %}"></script>
+{% endblock %}
