@@ -114,3 +114,5 @@ webencodings==0.5.1
 wrapt==1.17.2
 zipp==3.15.0
 zope.interface==7.2
+aiogram==2.25.1
+aiohttp==3.8.6

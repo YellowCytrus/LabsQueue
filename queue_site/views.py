@@ -25,6 +25,10 @@ from .models import User, Subject, LabSession, QueueEntry, Schedule, UserSubject
     SubjectLabWork
 from .serializers import UserSerializer, SubjectSerializer, LabSessionSerializer, QueueEntrySerializer
 from django.utils import timezone
+import uuid
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.shortcuts import render, redirect
 
 
 def register_view(request):
@@ -776,3 +780,31 @@ def profile_settings(request):
         messages.success(request, 'Настройки успешно сохранены!')
         return redirect('profile_settings')
     return render(request, 'queue_site/profile_settings.html')
+
+
+TEMP_TOKENS = {}
+
+
+@login_required
+def link_telegram(request):
+    if request.method == 'POST':
+        if 'unlink' in request.POST:
+            # Отвязываем Telegram
+            request.user.telegram_id = None
+            request.user.telegram_username = None
+            request.user.save()
+            messages.success(request, 'Telegram успешно отвязан.')
+            return redirect('link_telegram')
+        elif 'generate_link' in request.POST:
+            # Генерируем уникальный токен
+            token = str(uuid.uuid4())
+            TEMP_TOKENS[token] = {
+                'user_id': request.user.id
+            }
+            # Формируем ссылку для Telegram
+            bot_username = "plaki_plaki_prod_bot"  # Укажи username твоего бота без @
+            telegram_link = f"https://t.me/{bot_username}?start={token}"
+            messages.success(request, f"Перейдите по этой ссылке для привязки Telegram: {telegram_link}")
+            return redirect('link_telegram')
+
+    return render(request, 'queue_site/link_telegram.html')

@@ -1,0 +1,1 @@
+from .bot import bot, dp, on_startup, on_shutdown

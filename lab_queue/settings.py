@@ -167,3 +167,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'budanov.kirill.83@gmail.com'  # Замени на свой Gmail-адрес
 EMAIL_HOST_PASSWORD = 'yorv gjcv jkpr tccm'  # Замени на пароль приложения, который ты сгенерировал
 DEFAULT_FROM_EMAIL = 'budanov.kirill.83@gmail.com'  # Тот же адрес, что и EMAIL_HOST_USER
+
+
+# Настройки Telegram-бота
+TELEGRAM_BOT_TOKEN = '7951386321:AAHxpTDG6yhTRl9ap2uazpy7vX_-9mv1HPw'

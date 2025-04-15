@@ -1,13 +1,13 @@
-# queue_site/urls.py
-
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import RegisterView, SubjectListView, JoinQueueView, CompleteSubmissionView, home_view, register_view, \
-    login_view, logout_view, join_queue, queue_detail, complete_submission, CustomPasswordResetView, \
-    CheckTelegramUsernameView, add_subject, profile_view, toggle_lab_progress, profile_settings, register_email, \
-    register_confirm_email
+from .views import (
+    RegisterView, SubjectListView, JoinQueueView, CompleteSubmissionView, home_view, register_view,
+    login_view, logout_view, join_queue, queue_detail, complete_submission, CustomPasswordResetView,
+    CheckTelegramUsernameView, add_subject, profile_view, toggle_lab_progress, profile_settings,
+    register_email, register_confirm_email, link_telegram  # Добавляем link_telegram
+)
 
 urlpatterns = [
     # API
@@ -19,7 +19,7 @@ urlpatterns = [
     path('', home_view, name='home'),
     path('register/', RegisterView.as_view(), name='register'),
     path('register/email/', register_email, name='register_email'),
-    path('register/confirm-email/', register_confirm_email, name='register_confirm_email'),  # Новый путь
+    path('register/confirm-email/', register_confirm_email, name='register_confirm_email'),
     path('check-telegram-username/<uuid:token>/', CheckTelegramUsernameView.as_view(), name='check_telegram_username'),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
@@ -30,6 +30,7 @@ urlpatterns = [
     path('profile/', profile_view, name='profile'),
     path('profile/settings/', profile_settings, name='profile_settings'),
     path('toggle-lab-progress/<int:progress_id>/', toggle_lab_progress, name='toggle_lab_progress'),
+    path('link-telegram/', link_telegram, name='link_telegram'),  # Новый маршрут
 
     # Сброс пароля
     path('password_reset/', CustomPasswordResetView.as_view(), name='password_reset'),

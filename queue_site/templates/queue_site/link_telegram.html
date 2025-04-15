@@ -1,0 +1,46 @@
+{% extends 'queue_site/base.html' %}
+
+{% block title %}Привязка Telegram - Электронная очередь{% endblock %}
+
+{% block content %}
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <h2 class="text-center mb-4">Привязка Telegram</h2>
+                        {% if messages %}
+                            <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %}" role="alert">
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% if user.telegram_id %}
+                            <p class="text-center">Ваш Telegram уже привязан: @{{ user.telegram_username }}</p>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="unlink" value="true">
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-danger btn-lg">Отвязать Telegram</button>
+                                </div>
+                            </form>
+                        {% else %}
+                            <p class="text-center">Чтобы привязать Telegram, нажмите кнопку ниже для генерации ссылки.</p>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="generate_link" value="true">
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg">Сгенерировать ссылку</button>
+                                </div>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+                <p class="text-center mt-3 text-muted">
+                    <small>© ПЛАКИ-ПЛАКИ Production</small>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
