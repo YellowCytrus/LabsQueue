@@ -1,0 +1,35 @@
+{% extends 'queue_site/base.html' %}
+
+{% block title %}Настройка уведомлений - Электронная очередь{% endblock %}
+
+{% block content %}
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <h2 class="text-center mb-4">Настройка уведомлений</h2>
+                        {% if messages %}
+                            <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %}" role="alert">
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <p class="text-center">Хотите получать уведомления через Telegram?</p>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="d-grid gap-2">
+                                <button type="submit" name="link_telegram" class="btn btn-primary btn-lg">Привязать Telegram аккаунт</button>
+                                <button type="submit" name="skip" class="btn btn-secondary btn-lg">Пропустить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <p class="text-center mt-3 text-muted">
+                    <small>© ПЛАКИ-ПЛАКИ Production</small>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

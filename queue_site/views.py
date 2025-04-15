@@ -170,7 +170,8 @@ def register_confirm_email(request):
                 request.session.pop('email_verification', None)
                 request.session.pop('email_sent_time', None)
                 messages.success(request, 'Регистрация успешно завершена!')
-                return redirect('home')
+                # Перенаправляем на страницу с предложением привязки Telegram
+                return redirect('register_telegram_prompt')
             else:
                 messages.error(request, 'Неверный код подтверждения.')
                 # Если email изменили, обновляем его в сессии
@@ -782,29 +783,34 @@ def profile_settings(request):
     return render(request, 'queue_site/profile_settings.html')
 
 
-TEMP_TOKENS = {}
+@login_required
+def link_telegram(request):
+    telegram_link = None
+    bot_username = "plaki_plaki_prod_bot"
+
+    if not request.user.telegram_id:  # Генерируем ссылку только если Telegram не привязан
+        # Создаём токен в базе
+        from .models import TelegramLinkToken  # Импортируем модель
+        token_obj = TelegramLinkToken.objects.create(user=request.user)
+        print(f"Generated token: {token_obj.token} for user {request.user.username}")  # Лог для отладки
+        # Формируем ссылку для Telegram
+        telegram_link = f"https://t.me/{bot_username}?start={token_obj.token}"
+
+    return render(request, 'queue_site/link_telegram.html', {
+        'telegram_link': telegram_link,
+        'bot_username': bot_username
+    })
 
 
 @login_required
-def link_telegram(request):
+def register_telegram_prompt(request):
     if request.method == 'POST':
-        if 'unlink' in request.POST:
-            # Отвязываем Telegram
-            request.user.telegram_id = None
-            request.user.telegram_username = None
-            request.user.save()
-            messages.success(request, 'Telegram успешно отвязан.')
-            return redirect('link_telegram')
-        elif 'generate_link' in request.POST:
-            # Генерируем уникальный токен
-            token = str(uuid.uuid4())
-            TEMP_TOKENS[token] = {
-                'user_id': request.user.id
-            }
-            # Формируем ссылку для Telegram
-            bot_username = "plaki_plaki_prod_bot"  # Укажи username твоего бота без @
-            telegram_link = f"https://t.me/{bot_username}?start={token}"
-            messages.success(request, f"Перейдите по этой ссылке для привязки Telegram: {telegram_link}")
+        if 'skip' in request.POST:
+            # Если пользователь нажал "Пропустить", перенаправляем на главную
+            messages.info(request, 'Вы можете привязать Telegram позже в настройках профиля.')
+            return redirect('home')
+        elif 'link_telegram' in request.POST:
+            # Если пользователь нажал "Привязать Telegram", перенаправляем на страницу привязки
             return redirect('link_telegram')
 
-    return render(request, 'queue_site/link_telegram.html')
+    return render(request, 'queue_site/register_telegram_prompt.html')

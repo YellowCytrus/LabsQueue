@@ -178,3 +178,13 @@ class UserLabProgress(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.lab_work.title} ({'Сдано' if self.is_completed else 'Не сдано'})"
+
+
+class TelegramLinkToken(models.Model):
+    token = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_used = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Token for {self.user.username}: {self.token}"

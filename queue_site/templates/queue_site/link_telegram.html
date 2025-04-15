@@ -26,14 +26,16 @@
                                 </div>
                             </form>
                         {% else %}
-                            <p class="text-center">Чтобы привязать Telegram, нажмите кнопку ниже для генерации ссылки.</p>
-                            <form method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="generate_link" value="true">
-                                <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary btn-lg">Сгенерировать ссылку</button>
+                            {% if telegram_link %}
+                                <p class="text-center">Перейдите по этой ссылке, чтобы привязать Telegram:</p>
+                                <div class="text-center">
+                                    <a href="{{ telegram_link }}" class="btn btn-primary btn-lg" target="_blank">
+                                        Привязать Telegram
+                                    </a>
                                 </div>
-                            </form>
+                            {% else %}
+                                <p class="text-center text-danger">Ошибка: не удалось сгенерировать ссылку для привязки.</p>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>
